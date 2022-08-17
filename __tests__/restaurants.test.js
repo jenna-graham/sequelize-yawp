@@ -70,13 +70,13 @@ describe('restaurant routes', () => {
     await db.sequelize.close();
   });
 
-  it('#GET /api/v1/restaurants should return a list of restaurants', async () => {
+  it.skip('#GET /api/v1/restaurants should return a list of restaurants', async () => {
     const resp = await request(app).get('/api/v1/restaurants');
     expect(resp.status).toBe(200);
     expect(resp.body.length).toBe(2);
   });
 
-  it('#GET /restaurant/:id should return the restaurant detail with nested reviews', async () => {
+  it.skip('#GET /restaurant/:id should return the restaurant detail with nested reviews', async () => {
     const resp = await request(app).get('/api/v1/restaurants/1');
     expect(resp.status).toBe(200);
     expect(resp.body).toEqual({
@@ -97,7 +97,7 @@ describe('restaurant routes', () => {
       Reviews: [],
     });
   });
-  it('#POST /restaurants/:id/reviews should create a new review if user logged in', async () => {
+  it.skip('#POST /restaurants/:id/reviews should create a new review if user logged in', async () => {
     const [agent, user] = await registerAndLogin();
     const resp = await agent
       .post('/api/v1/restaurants/1/reviews')
@@ -113,7 +113,7 @@ describe('restaurant routes', () => {
       updatedAt: expect.any(String),
     });
   });
-  it('#POST /restaurants/:id/reviews should return a 401 if not authenticated', async () => {
+  it.skip('#POST /restaurants/:id/reviews should return a 401 if not authenticated', async () => {
     const resp = await request(app)
       .post('/api/v1/restaurants/1/reviews')
       .send({ stars: 5, detail: 'Amazing!' });
