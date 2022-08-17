@@ -63,9 +63,15 @@ describe('movie routes', () => {
     await db.sequelize.close();
   });
 
-  it.only('#GET /api/v1/movies should return a list of movies', async () => {
+  it('#GET /api/v1/movies should return a list of movies', async () => {
     const res = await request(app).get('/api/v1/movies');
     expect(res.status).toBe(200);
     expect(res.body.length).toBe(4);
+  });
+
+  it('GET /api/v1/genres should return a list of genres', async () => {
+    const res = await request(app).get('/api/v1/genres');
+    expect(res.status).toBe(200);
+    expect(res.body.length).toEqual(7);
   });
 });
